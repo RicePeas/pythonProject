@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Registration</h1>
+    <form action="" method="post">
+    {{ test.hidden_tag() }}<br>
+    <p>
+        {{ test.username.label }}<br>
+        {{ test.username(size=32) }}<br>
+        {% for error in test.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ test.email.label }}<br>
+        {{ test.email(size=64) }}<br>
+        {% for error in test.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ test.password.label }}<br>
+        {{ test.password(size=32) }}<br>
+        {% for error in test.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ test.password2.label }}<br>
+        {{ test.password2(size=32) }}<br>
+        {% for error in test.password2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ test.submit() }}</p>
+</form>
+{% endblock %}

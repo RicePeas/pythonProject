@@ -1,0 +1,41 @@
+<html lang="">
+    <head>
+        {% if title %}
+            <title>{{ title }}Home - WebInterface</title>
+            {% else %}
+            <title>{{ title }}Welcome to WebInterface</title>
+        {% endif %}
+    </head>
+
+    <body>
+        <div>
+            WebInterface:
+
+            <a href="/index">Home</a>
+            {% if current_user.is_anonymous %}
+            <a href="/login">Login</a>
+            {% endif %}
+
+            {% if current_user.is_authenticated %}
+                <a href="/logout">Logout</a>
+                <a href="/user/<username>">User</a>
+            {% endif %}
+
+            {% if current_user.admin_status==True %}
+            <a href="/register">Register</a>
+            {% endif %}
+        </div>
+        <hr>
+
+        {% with messages= get_flashed_messages() %}
+           {% if messages %}
+               <ul>
+                    {% for message in messages %}
+                        <li> {{ message }}</li>
+                    {% endfor %}
+             </ul>
+           {% endif %}
+        {% endwith %}
+       {% block content %}{% endblock %}
+    </body>
+</html>
